@@ -9,14 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var selectedShow: SelectFavoriteShow = .dark
+    @State private var selectedShow: SelectFavoriteShow = .one
     
     var body: some View {
-        GeometryReader { proxy in
             NavigationView {
                 VStack (alignment: .center) {
                     ScrollView(.horizontal) {
-                        HStack {
+                        HStack(spacing: 20) {
                             Picker("Some of the Best", selection: $selectedShow) {
                                 ForEach(SelectFavoriteShow.allCases, id: \.self) {
                                     Text($0.rawValue)
@@ -27,29 +26,33 @@ struct ContentView: View {
                             .shadow(color: Color.brown.opacity(0.8), radius: 5, x: 0, y: 2)
                             .padding()
                         }
+                        .background(.gray.opacity(0.4))
+                        .cornerRadius(20)
+                        .frame(height: 100)
+                        .padding()
+                        Divider()
                     }
-           
                     Spacer()
                     FavoriteTVShowView(selectedShow: selectedShow)
                     Spacer()
                 }
-                .navigationTitle("Some of my Favorites")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("Some of the Greatest")
             }
-        }
     }
 }
 
 enum SelectFavoriteShow: String, CaseIterable {
-    case light = "The Best Together"
-    case grey = "Bewitched"
-    case dark = "The Simpsons"
-    case blue = "I Love Lucy"
-    case yellow = "The Jeffersons"
-    case green = "I Dream of Jeannie"
-    case purple = "Charmed"
-    case brown = "The Golden Girls"
-    case red = "All in the Family"
-    case orange = "Cheers"
+    case one = "The Best Together"
+    case two = "Bewitched"
+    case three = "The Simpsons"
+    case four = "I Love Lucy"
+    case five = "The Jeffersons"
+    case six = "I Dream of Jeannie"
+    case seven = "Charmed"
+    case eight = "The Golden Girls"
+    case nine = "All in the Family"
+    case ten = "Cheers"
 }
 
 struct FavoriteTVShowView: View {
@@ -58,25 +61,25 @@ struct FavoriteTVShowView: View {
     
     var body: some View {
         switch selectedShow {
-        case .light:
+        case .one:
             FavoriteSitcomImageView(favoriteSitcomName: "history")
-        case .grey:
+        case .two:
             FavoriteSitcomImageView(favoriteSitcomName: "bewitched")
-        case .dark:
+        case .three:
             FavoriteSitcomImageView(favoriteSitcomName: "simpsons")
-        case .blue:
+        case .four:
             FavoriteSitcomImageView(favoriteSitcomName: "lucy")
-        case .yellow:
+        case .five:
             FavoriteSitcomImageView(favoriteSitcomName: "jeffersons")
-        case .green:
+        case .six:
             FavoriteSitcomImageView(favoriteSitcomName: "jeannie")
-        case .purple:
+        case .seven:
             FavoriteSitcomImageView(favoriteSitcomName: "charmed")
-        case .brown:
+        case .eight:
             FavoriteSitcomImageView(favoriteSitcomName: "golden")
-        case .red:
+        case .nine:
             FavoriteSitcomImageView(favoriteSitcomName: "family")
-        case .orange:
+        case .ten:
             FavoriteSitcomImageView(favoriteSitcomName: "cheers")
         }
     }
